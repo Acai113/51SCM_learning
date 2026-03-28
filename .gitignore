@@ -1,0 +1,28 @@
+echo '# Keil 输出文件
+*.obj
+*.lst
+*.m51
+*.map
+*.bak
+*.crf
+*.d
+*.axf
+*.dep
+*.plg
+
+# 编译生成的 hex 文件
+*.hex
+
+# 临时文件
+*.lnp
+*.o
+*.iex
+
+# Keil 项目备份
+*.uvguix.*
+*.uvoptx.bak
+*.uvprojx.bak
+
+# Windows 系统文件
+Thumbs.db
+desktop.ini' > .gitignore
