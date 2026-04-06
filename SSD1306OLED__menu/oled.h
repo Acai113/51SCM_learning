@@ -1,6 +1,6 @@
 #ifndef __OLED_H__
 #define __OLED_H__
-#include<REGX52.H>
+#include"REGX52.H"
 
 #define  u8 unsigned char 
 #define  u16 unsigned int
@@ -38,10 +38,10 @@ void OLED_Set_Simple(u8 x, u8 y);  //显示一个像素点
 
 void OLED_Init(void); //初始化
 void OLED_Clear(void); //清屏函数
-void OLED_ShowChar(u8 x. u8 y, u8 chr, u8 sizey); //显示字符 列坐标，页坐标，字符，大小
-void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 sizey); //显示数字 列坐标，页坐标，数字，长度，大小
+void OLED_ShowChar(u8 x, u8 y, u8 chr, u8 sizey); //显示字符 列坐标，页坐标，字符，大小
+void OLED_ShowNum(u8 x,u8 y,u32 num, u8 sizey); //显示数字 列坐标，页坐标，数字，大小
 void OLED_ShowString(u8 x,u8 y,u8 *chr,u8 sizey);  //显示字符串 列坐标，页坐标，字符串，大小
-void OLED_ShowChinese(u8 x,u8 y,u8 no,u8 sizey)  //显示汉字 列坐标，页坐标，下标，大小
+void OLED_ShowChinese(u8 x,u8 y,u8 no,u8 sizey);  //显示汉字 列坐标，页坐标，下标，大小
 
 
 #endif

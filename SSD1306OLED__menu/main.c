@@ -1,16 +1,13 @@
-#include"oled.h"
-#include<REGX52.H>
-
-
-
+#include"menu.h"
+#include"timer0.h"
 void main(void)
 {
-	OLED_Init();
-	OLED_Clear();
+	Timer0_Init();
+	Key_Init();
 	
-	OLED_Set_Simple(64,32);
-	while(1)
+  Menu_Init();
+  while(1) 
 	{
-		
-	}
+    Menu_Loop();
+  }
 }

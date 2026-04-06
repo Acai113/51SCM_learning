@@ -43,6 +43,14 @@ void OLED_Set_Pos(u8 x, u8 y)
 	OLED_WR_Byte((x&0x0f), OLED_CMD);
 }
 
+//m^n函数
+u32 oled_pow(u8 m,u8 n)
+{
+	u32 result=1;	 
+	while(n--)result*=m;    
+	return result;
+}
+
 void OLED_Init(void)
 {
 	//硬件复位
@@ -122,7 +130,7 @@ void OLED_Set_Simple(unsigned char x, unsigned char y)
 }
 
 /*显示一个字符*/
-void OLED_ShowChar(u8 x. u8 y, u8 chr, u8 sizey)
+void OLED_ShowChar(u8 x, u8 y, u8 chr, u8 sizey)
 {
 	u8 c=0, sizex=sizey/2;
 	u16 i, size1;  //size1为字符点阵数据的总字节数
@@ -135,16 +143,32 @@ void OLED_ShowChar(u8 x. u8 y, u8 chr, u8 sizey)
 		if(i%sizex==0&&sizey!=8) OLED_Set_Pos(x,y++);
 		if(sizey==8) OLED_WR_Byte(asc2_0806[c][i],OLED_DATA);//6X8字号
 		else if(sizey==16) OLED_WR_Byte(asc2_1608[c][i],OLED_DATA);//8x16字号
+		
 		else return;
 	}
 }
 
 /*显示数字，可多位*/
-void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 sizey)
+void OLED_ShowNum(u8 x,u8 y,u32 num, u8 sizey)
 {         	
 	u8 t,temp,m=0;
 	u8 enshow=0;
+	
+	u32 n = num;
+	u8 len = 0;
+	
 	if(sizey==8)m=2;
+	
+	if(n==0) len=1;
+	else
+	{
+		while(n>0)
+		{
+			n = n/10;
+			len++;
+		}
+	}
+	
 	for(t=0;t<len;t++)
 	{
 		temp=(num/oled_pow(10,len-t-1))%10;
